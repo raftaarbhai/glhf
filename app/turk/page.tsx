@@ -1,13 +1,13 @@
 import {
   createServerActionClient,
   createServerComponentClient,
-} from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import Image from 'next/image'
-import { redirect } from 'next/navigation'
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+} from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import Image from "next/image";
+import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 import {
   Card,
@@ -16,32 +16,29 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/ui/card";
 
-
-
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 export default async function ProtectedRoute() {
-  const supabase = createServerComponentClient({ cookies })
-
+  const supabase = createServerComponentClient({ cookies });
 
   const {
     data: { user },
-  } = await supabase.auth.getUser()
+  } = await supabase.auth.getUser();
 
   if (!user) {
     // This route can only be accessed by authenticated users.
     // Unauthenticated users will be redirected to the `/login` route.
-    redirect('/login')
+    redirect("/login");
   }
 
   const signOut = async () => {
-    'use server'
-    const supabase = createServerActionClient({ cookies })
-    await supabase.auth.signOut()
-    redirect('/login')
-  }
+    "use server";
+    const supabase = createServerActionClient({ cookies });
+    await supabase.auth.signOut();
+    redirect("/login");
+  };
 
   return (
     <div className="flex-1 flex flex-col max-w-3xl mt-24">
@@ -101,7 +98,7 @@ export default async function ProtectedRoute() {
         </Card>
       </div>
 
-          <Button>Submit</Button>
+      <Button>Submit</Button>
     </div>
-  )
+  );
 }

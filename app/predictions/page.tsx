@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -11,7 +11,7 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("submitting")
+    console.log("submitting");
     const response = await fetch("/api/predictions", {
       method: "POST",
       headers: {
@@ -22,27 +22,27 @@ export default function Home() {
       }),
     });
     let prediction = await response.json();
-    console.log(response)
-    if (response.status !== 201 &&  response.status !== 200) {
+    console.log(response);
+    if (response.status !== 201 && response.status !== 200) {
       setError(prediction.detail);
       return;
     }
     setPrediction(prediction);
-      console.log(prediction)
+    console.log(prediction);
 
     while (
       prediction.status !== "succeeded" &&
       prediction.status !== "failed"
     ) {
       await sleep(1000);
-        console.log(prediction)
+      console.log(prediction);
       const response = await fetch("/api/predictions/" + prediction.id);
       prediction = await response.json();
       if (response.status !== 200) {
         setError(prediction.detail);
         return;
       }
-      console.log({prediction})
+      console.log({ prediction });
       setPrediction(prediction);
     }
   };
@@ -58,8 +58,12 @@ export default function Home() {
         <a href="https://replicate.com/stability-ai/stable-diffusion">SDXL</a>:
       </p>
 
-      <form  onSubmit={handleSubmit}>
-        <input type="text" name="prompt" placeholder="Enter a prompt to display an image" />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="prompt"
+          placeholder="Enter a prompt to display an image"
+        />
         <button type="submit">Go!</button>
       </form>
 
@@ -67,17 +71,17 @@ export default function Home() {
 
       {prediction && (
         <div>
-            {prediction.output && (
-              <div>
+          {prediction.output && (
+            <div>
               <Image
                 fill
                 src={prediction.output[prediction.output.length - 1]}
                 alt="output"
-                sizes='100vw'
+                sizes="100vw"
               />
-              </div>
-            )}
-            <p>status: {prediction.status}</p>
+            </div>
+          )}
+          <p>status: {prediction.status}</p>
         </div>
       )}
     </div>
