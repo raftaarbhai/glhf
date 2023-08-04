@@ -25,6 +25,8 @@ Check out the [`/app/_examples`](./app/_examples/) folder for an example of crea
 - [Route Handlers](./app/_examples/route-handler/route.ts)
 - [Server Actions](./app/_examples/server-action/page.tsx)
 
+Be sure to add `http://localhost:3000/**` under Auth > Redirect URLs.
+
 ### Model Schema
 To insert
 

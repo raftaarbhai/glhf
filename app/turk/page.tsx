@@ -6,6 +6,9 @@ import { cookies } from 'next/headers'
 import Image from 'next/image'
 import { redirect } from 'next/navigation'
 import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+
 import {
   Card,
   CardContent,
@@ -21,6 +24,7 @@ export const dynamic = 'force-dynamic'
 
 export default async function ProtectedRoute() {
   const supabase = createServerComponentClient({ cookies })
+
 
   const {
     data: { user },
@@ -96,7 +100,8 @@ export default async function ProtectedRoute() {
           </CardFooter>
         </Card>
       </div>
-      <Button>Click me</Button>
+
+          <Button>Submit</Button>
     </div>
   )
 }
