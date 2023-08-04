@@ -19,8 +19,8 @@ export default function RootLayout({
         <main className="min-h-screen bg-background flex flex-col items-center">
           {children}
         </main>
+        <Footer />
       </body>
-      <Footer />
     </html>
   );
 }
