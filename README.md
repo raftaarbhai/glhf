@@ -2,16 +2,13 @@
 
 Bitcoin turk - complete jobs, help improve models via RLHF, and get paid.
 
-## Deploy your own
-
-The Vercel deployment will guide you through creating a Supabase account and project. After installation of the Supabase integration, all relevant environment variables will be set up so that the project is usable immediately after deployment 🚀
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-supabase&project-name=nextjs-with-supabase&repository-name=nextjs-with-supabase&integration-ids=oac_jUduyjQgOyzev1fjrW83NYOv)
 
 ## How to use
 
 1. Run `npm install` to install dependencies
-1. Rename `.env.local.example` to `.env.local` and update the values for `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api). Fill out `REPLICATE_API_TOKEN` obtained from your Replicate account as well.
+1. Rename `.env.local.example` to `.env.local` and update the values for `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` from [your Supabase project's API settings](https://app.supabase.com/project/_/settings/api). Fill out `REPLICATE_API_TOKEN` obtained from your Replicate account as well. Also head to [Zeebeedee](dashboard.zebedee.io) to obtain an API Key for the payments.
+1. Run `supabase/migrations/20230618024722_init.sql` against your Supabase DB by copying the Script and heading to the SQL Editor on the Supabase Dashboard with a Test user by going to Projects > Test Users on ZBD. Alternatively, you can pay to a lightning address by changing `sendGamertagPayments` to [this function call](https://github.com/zebedeeio/zbd-node)
+1. Replace Gamertag in `glhf/components/turk/outputSelection.tsx`
 1. Run `npm run dev` to start the local development server
 
 > Check out [the docs for Local Development](https://supabase.com/docs/guides/getting-started/local-development) to also run Supabase locally.
