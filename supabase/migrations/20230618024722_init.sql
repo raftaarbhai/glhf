@@ -7,8 +7,7 @@ create table if not exists
     "response_three" text,
     "response_four" text,
     category text,
-    original_response text,
-    external_id text,
+    selected text,
     id integer primary key generated always as identity
   );
 
