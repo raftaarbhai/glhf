@@ -3,7 +3,7 @@ import { Textarea } from "@/components/ui/textarea"
 
 import {useState} from "react"
 import { Button } from "@/components/ui/button";
-export default function EditableScroll(props: {promptGenerated: boolean, generatePrompts: any, textContent: string, setTextContent: any}) {
+export default function EditableScroll(props: {promptGenerated: boolean, generatePrompts: any, textContent: string, setTextContent: any, isResponseGenerating: boolean}) {
 
 
     const handleTextContentChange = event => {
@@ -20,8 +20,10 @@ export default function EditableScroll(props: {promptGenerated: boolean, generat
             </Textarea>
 
         </div>
-        {!props.promptGenerated &&
+        {(!props.isResponseGenerating && !props.promptGenerated) &&
          <Button onClick={props.generatePrompts}> Generate Prompt </Button>}
+        {props.isResponseGenerating &&
+         <div> Loading...</div>}
         </>
     )
 }
