@@ -25,5 +25,6 @@ export async function POST(req) {
   }
 
   const prediction = await response.json();
+  console.log(prediction)
   return NextResponse.json(prediction);
 }

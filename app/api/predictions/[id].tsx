@@ -11,6 +11,7 @@ export async function POST(req) {
       },
     },
   );
+
   if (response.status !== 200) {
     let error = await response.json();
     return NextResponse.json({ detail: error.detail });
